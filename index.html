@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Camera Stream</title>
+</head>
+<body>
+    <h1>Live Stream from IP Camera</h1>
+    <video id="videoPlayer" controls autoplay>
+        <source src="YOUR_IP_CAMERA_STREAM_URL" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = 'YOUR_IP_CAMERA_STREAM_URL';
+            videoPlayer.play();
+        });
+    </script>
+</body>
+</html>
