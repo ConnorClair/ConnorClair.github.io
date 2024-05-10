@@ -3,34 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
+    <title>Display Camera Feed</title>
 </head>
 <body>
-    <h1>Index Page</h1>
+    <h1>Camera Feed Display</h1>
     
-    <!-- Create a link to navigate to the display page -->
-    <a href="display.html">Go to Display</a>
+    <!-- Create video element to display camera feed -->
+    <video id="videoDisplay" autoplay></video>
 
-    <!-- Create video element for USB camera stream -->
-    <video id="videoPlayer" controls autoplay></video>
-
-    <!-- Button to start the stream -->
-    <button onclick="startStream()">Start Stream</button>
-
-    <!-- Script to handle starting the stream -->
+    <!-- Script to handle displaying camera feed -->
     <script>
-        // Function to start the stream
-        function startStream() {
-            // Get the video player element
-            var videoPlayer = document.getElementById('videoPlayer');
+        // Function to start displaying the camera feed
+        function displayCameraFeed() {
+            // Get the video display element
+            var videoDisplay = document.getElementById('videoDisplay');
             
             // Check if navigator mediaDevices is supported
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 // Access the user's camera
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function(stream) {
-                    // Attach the stream to the video player
-                    videoPlayer.srcObject = stream;
+                    // Attach the stream to the video display element
+                    videoDisplay.srcObject = stream;
                 })
                 .catch(function(error) {
                     // Log any errors to the console
@@ -41,6 +35,9 @@
                 alert('getUserMedia is not supported on your browser.');
             }
         }
+
+        // Call the function to start displaying the camera feed
+        displayCameraFeed();
     </script>
 </body>
 </html>
