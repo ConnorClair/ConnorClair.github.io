@@ -3,34 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Camera Stream</title>
+    <title>USB Camera Stream</title>
 </head>
 <body>
-    <h1>Live Stream from IP Camera</h1>
+    <h1>Live Stream from USB Camera</h1>
     
-    <label for="cameraUrl">Enter IP Camera Stream URL:</label>
-    <input type="text" id="cameraUrl" placeholder="Enter URL">
+    <!-- Create video element -->
+    <video id="videoPlayer" controls autoplay></video>
 
+    <!-- Button to start the stream -->
     <button onclick="startStream()">Start Stream</button>
 
-    <video id="videoPlayer" controls autoplay>
-        <source src="" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
+    <!-- Script to handle starting the stream -->
     <script>
+        // Function to start the stream
         function startStream() {
-            var cameraUrlInput = document.getElementById('cameraUrl');
+            // Get the video player element
             var videoPlayer = document.getElementById('videoPlayer');
-            var cameraUrl = cameraUrlInput.value;
-
-            if (cameraUrl.trim() === '') {
-                alert('Please enter a valid URL for the IP camera stream.');
-                return;
+            
+            // Check if navigator mediaDevices is supported
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                // Access the user's camera
+                navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    // Attach the stream to the video player
+                    videoPlayer.srcObject = stream;
+                })
+                .catch(function(error) {
+                    // Log any errors to the console
+                    console.error('Error accessing the camera:', error);
+                });
+            } else {
+                // If getUserMedia is not supported, show an error message
+                alert('getUserMedia is not supported on your browser.');
             }
-
-            videoPlayer.src = cameraUrl;
-            videoPlayer.play();
         }
     </script>
 </body>
