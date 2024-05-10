@@ -7,17 +7,31 @@
 </head>
 <body>
     <h1>Live Stream from IP Camera</h1>
+    
+    <label for="cameraUrl">Enter IP Camera Stream URL:</label>
+    <input type="text" id="cameraUrl" placeholder="Enter URL">
+
+    <button onclick="startStream()">Start Stream</button>
+
     <video id="videoPlayer" controls autoplay>
-        <source src="YOUR_IP_CAMERA_STREAM_URL" type="video/mp4">
+        <source src="" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        function startStream() {
+            var cameraUrlInput = document.getElementById('cameraUrl');
             var videoPlayer = document.getElementById('videoPlayer');
-            videoPlayer.src = 'YOUR_IP_CAMERA_STREAM_URL';
+            var cameraUrl = cameraUrlInput.value;
+
+            if (cameraUrl.trim() === '') {
+                alert('Please enter a valid URL for the IP camera stream.');
+                return;
+            }
+
+            videoPlayer.src = cameraUrl;
             videoPlayer.play();
-        });
+        }
     </script>
 </body>
 </html>
