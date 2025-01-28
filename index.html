@@ -7,37 +7,6 @@
     <title>Camera Stream</title>
 </head>
 <body>
-    <h1>Camera Stream</h1>
-
-    <!-- Video element to display camera feed -->
-    <video id="videoPlayer" autoplay></video>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        // Connect to the server using Socket.io
-        const socket = io();
-
-        // Get the video element
-        const videoPlayer = document.getElementById('videoPlayer');
-
-        // Function to start streaming camera feed
-        function startStream() {
-            // Get the camera feed using getUserMedia
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then((stream) => {
-                    // Display the camera feed in the video element
-                    videoPlayer.srcObject = stream;
-                    
-                    // Send the camera stream to the server
-                    socket.emit('cameraStream', stream);
-                })
-                .catch((error) => {
-                    console.error('Error accessing the camera:', error);
-                });
-        }
-
-        // Start streaming when the page loads
-        startStream();
-    </script>
+   <a href="https://connorclair.github.io/batchConvert/>batchConvert1</a>
 </body>
 </html>
